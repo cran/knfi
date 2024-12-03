@@ -1,7 +1,7 @@
-9c1959e942b61f35d84fa6072d273c36 *DESCRIPTION
+df4c4429f685a8584a5bf2d2663a359d *DESCRIPTION
 8fa17ea6becdc8aa5da5a96cb430fde7 *NAMESPACE
-87b234e8d1cbde6a71e4aca8f719bb8f *NEWS.md
-ffefa396b2e74c87277d8c0042b9eb78 *R/biomass_nfi.R
+d9abf7f21c65caa48043e48ba66e7f77 *NEWS.md
+e7605a47376eda566171362ca549509a *R/biomass_nfi.R
 50176dc21914caf095b25cfb96a1de1d *R/cwd_biomass_nfi.R
 2f101ba9ef5d28507c71a5ee561ebdeb *R/diversity_nfi.R
 ecfe8c4f5581181565caad30471a82a6 *R/filter_nfi.R

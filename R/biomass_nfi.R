@@ -276,7 +276,7 @@ biomass_nfi <- function(data, byplot= FALSE, plotgrp=NULL, treegrp= NULL, contin
                 tree_area= sum(tree_area, na.rm=TRUE),.groups = 'drop')
 
     bm_temp <- df %>% 
-      group_by(CYCLE, !!plot_id, INVYR, largetree, !!!plotgrp, SP, !!strat) %>% 
+      group_by(CYCLE, !!plot_id, INVYR, largetree, !!!plotgrp, !!!treegrp, !!strat) %>% 
       summarise(volume_m3 = sum(VOL_EST, na.rm=TRUE),
                 biomass_ton = sum(T_biomass, na.rm=TRUE),
                 AG_biomass_ton = sum(AG_biomass, na.rm=TRUE),
@@ -304,6 +304,7 @@ biomass_nfi <- function(data, byplot= FALSE, plotgrp=NULL, treegrp= NULL, contin
       bm_temp[condition] <- NULL
       bm_temp$tree_area <- NULL
       bm_temp$largetree_area <- NULL
+      bm_temp$largetree <- NULL
       
       
     }else{ # 1.1.2 Biomass calculation by cluster plots including large tree survey plots 
@@ -358,6 +359,7 @@ biomass_nfi <- function(data, byplot= FALSE, plotgrp=NULL, treegrp= NULL, contin
       bm_temp[condition] <- NULL
       bm_temp$tree_area <- NULL
       bm_temp$largetree_area <- NULL
+      bm_temp$largetree <- NULL
       
       
       
@@ -384,18 +386,18 @@ biomass_nfi <- function(data, byplot= FALSE, plotgrp=NULL, treegrp= NULL, contin
     
     # 2.1.1 Double sampling for post-strat(by forest stand)
     weight_plotgrp <- data$plot %>% 
-      group_by(!!!plotgrp) %>% 
-      summarise(plot_num_all = n(),.groups = 'drop')
+      group_by(CYCLE, !!!plotgrp) %>% 
+      summarise(plot_num_all = n_distinct(!!plot_id),.groups = 'drop')
     
     
     weight_year <- data$plot %>% 
       group_by(CYCLE, INVYR, !!!plotgrp) %>% 
-      summarise(plot_num_year = n(),.groups = 'drop')
+      summarise(plot_num_year = n_distinct(!!plot_id),.groups = 'drop')
     
     
     weight_stand <- data$plot %>% 
       group_by(CYCLE, INVYR, !!strat, !!!plotgrp) %>% 
-      summarise(plot_num_stand = n(),.groups = 'drop')
+      summarise(plot_num_stand = n_distinct(!!plot_id),.groups = 'drop')
     
     
     weight_DSS <- full_join(weight_stand, weight_year, by =c("CYCLE", "INVYR", as.character(unlist(lapply(plotgrp, quo_name)))))
@@ -477,7 +479,7 @@ biomass_nfi <- function(data, byplot= FALSE, plotgrp=NULL, treegrp= NULL, contin
     
     
     # 2.1.4 Weighted Moving Average(to combine annual inventory field data)
-    weight_WMA <- full_join(weight_year, weight_plotgrp, by =c(as.character(unlist(lapply(plotgrp, quo_name)))))
+    weight_WMA <- full_join(weight_year, weight_plotgrp, by =c("CYCLE", as.character(unlist(lapply(plotgrp, quo_name)))))
     weight_WMA$weight_WMA <- weight_WMA$plot_num_year/weight_WMA$plot_num_all
     
     
@@ -783,17 +785,17 @@ biomass_tsvis <- function(data, plotgrp=NULL, treegrp=NULL, strat="FORTYP_SUB", 
   # 2.1.1 Double sampling for post-strat(forest stand)
   weight_plotgrp <- data$plot %>%  # not CYCLE
     group_by(!!!plotgrp) %>% 
-    summarise(plot_num_all = n(),.groups = 'drop')
+    summarise(plot_num_all = n_distinct(!!plot_id),.groups = 'drop')
   
   
   weight_year <- data$plot %>% 
     group_by(CYCLE, INVYR, !!!plotgrp) %>% 
-    summarise(plot_num_year = n(),.groups = 'drop')
+    summarise(plot_num_year = n_distinct(!!plot_id),.groups = 'drop')
   
   
   weight_stand <- data$plot %>% 
     group_by(CYCLE, INVYR, !!strat, !!!plotgrp) %>% 
-    summarise(plot_num_stand = n(),.groups = 'drop')
+    summarise(plot_num_stand = n_distinct(!!plot_id),.groups = 'drop')
   
   
   weight_DSS <- full_join(weight_stand, weight_year, by =c("CYCLE", "INVYR", as.character(unlist(lapply(plotgrp, quo_name)))))
