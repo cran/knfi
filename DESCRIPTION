@@ -1,6 +1,6 @@
 Package: knfi
 Title: Analysis of Korean National Forest Inventory Database
-Version: 1.0.1.9
+Version: 1.0.2
 Maintainer: Sinyoung Park <youngsin0306@kookmin.ac.kr>
 Authors@R: 
   c(person(given = "Sinyoung", family = "Park", role = c("aut", "cre"), email = "youngsin0306@kookmin.ac.kr", comment = c(ORCID = "0000-0003-3658-0935")),
@@ -48,11 +48,13 @@ Suggests: kadmin, knitr, rmarkdown
 VignetteBuilder: knitr
 Language: en-US
 NeedsCompilation: no
-Packaged: 2024-12-03 06:55:33 UTC; PSY
-Author: Sinyoung Park [aut, cre] (<https://orcid.org/0000-0003-3658-0935>),
-  Wonhee Cho [aut, ctb] (<https://orcid.org/0000-0002-9598-6188>),
-  Inyoo Kim [aut, ctb] (<https://orcid.org/0000-0002-7709-8224>),
-  Wontaek Lim [aut, ctb] (<https://orcid.org/0000-0002-5872-1121>),
-  Dongwook W. Ko [aut, ths] (<https://orcid.org/0000-0002-6944-0261>)
+Packaged: 2026-01-22 10:56:42 UTC; PSY
+Author: Sinyoung Park [aut, cre] (ORCID:
+    <https://orcid.org/0000-0003-3658-0935>),
+  Wonhee Cho [aut, ctb] (ORCID: <https://orcid.org/0000-0002-9598-6188>),
+  Inyoo Kim [aut, ctb] (ORCID: <https://orcid.org/0000-0002-7709-8224>),
+  Wontaek Lim [aut, ctb] (ORCID: <https://orcid.org/0000-0002-5872-1121>),
+  Dongwook W. Ko [aut, ths] (ORCID:
+    <https://orcid.org/0000-0002-6944-0261>)
 Repository: CRAN
-Date/Publication: 2024-12-03 07:20:05 UTC
+Date/Publication: 2026-01-22 11:10:02 UTC
